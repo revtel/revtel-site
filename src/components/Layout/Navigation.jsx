@@ -3,7 +3,13 @@ import Link from 'gatsby-link'
 import styled from 'styled-components'
 import UserLinks from '../UserLinks'
 
+const Wrapper = styled.div`
+    width: 100%;
+    height: 63px; 
+`
+
 const NavContainer = styled.div`
+  z-index: 10;
   position: fixed;
   left: 0;
   top: 0;
@@ -39,15 +45,16 @@ class Navigation extends React.Component {
   render() {
     let {fixed} = this.props;
     return (
-      <NavContainer>
-        <section>
-          <Link className='nav-link' to='/' >首頁</Link>
-          <Link className='nav-link' to='/categories/tech/' >技術</Link>
-          <Link className='nav-link' to='/categories/biz/' >創業</Link>
-          <Link className='nav-link' to='/lesson-one' >教學</Link>
-        </section>
-        <span><UserLinks /></span>
-      </NavContainer>
+      <Wrapper>
+        <NavContainer>
+            <section>
+                <Link className='nav-link' style={{fontWeight: 'bold', color: 'orange'}} to='/' >Revtel's Blog</Link>
+                <Link className='nav-link' style={{color: 'white'}} to='/categories/tech/' >技術文章</Link>
+                <Link className='nav-link' style={{color: 'white'}} to='/categories/biz/' >創業文章</Link>
+            </section>
+            <span><UserLinks /></span>
+        </NavContainer>
+      </Wrapper>
     )
   }
 }

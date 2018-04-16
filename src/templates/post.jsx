@@ -1,21 +1,18 @@
 import React from "react";
 import Helmet from "react-helmet";
 import styled from "styled-components"
-
-import UserInfo from "../components/UserInfo";
-import Disqus from "../components/Disqus/Disqus";
-import PostTags from "../components/PostTags/PostTags";
-import SocialLinks from "../components/SocialLinks/SocialLinks";
 import SEO from "../components/SEO";
 import config from "../../data/SiteConfig";
 import "./b16-tomorrow-dark.css";
 import SiteHeader from '../components/Layout/Header'
+import BackToCategoryButton from '../components/BackToCategoryButton'
 
 export default class PostTemplate extends React.Component {
   render() {
     const { slug } = this.props.pathContext;
     const postNode = this.props.data.markdownRemark;
     const post = postNode.frontmatter;
+    console.log(post);
     if (!post.id) {
       post.id = slug;
     }
@@ -28,55 +25,29 @@ export default class PostTemplate extends React.Component {
           <title>{`${post.title} | ${config.siteTitle}`}</title>
         </Helmet>
         <SEO postPath={slug} postNode={postNode} postSEO />
-        <BodyGrid>
-          <HeaderContainer>
-            <SiteHeader location={this.props.location}/>
-          </HeaderContainer>
-          <BodyContainer>
-            <h1>
+
+        <div>
+          <SiteHeader location={this.props.location}/>
+
+          <Content>
+            <BackToCategoryButton category={post.category} />
+            
+            <h1 style={{margin: 0}}>
               {post.title}
             </h1>
+            <div style={{color: '#bbb'}}>{post.date}</div>
             <div dangerouslySetInnerHTML={{ __html: postNode.html }} />
-            <div className="post-meta">
-              <PostTags tags={post.tags} />
-              <SocialLinks postPath={slug} postNode={postNode} />
-            </div>
-            <UserInfo config={config} />
-            <Disqus postNode={postNode} />
-          </BodyContainer>
-        </BodyGrid>
+          </Content>
+        </div>
       </div>
     );
   }
 }
 
-const BodyGrid = styled.div`
-  height: 100vh;
-  display: grid;
-  grid-template-rows: 75px 1fr;
-`
-
-const BodyContainer = styled.div`
-  grid-row: 2 / 3;
-  overflow: scroll;
-  justify-self: center;
-  width: 100%;
-  padding: ${props => props.theme.sitePadding};
-
-  & > div {
-    max-width: ${props => props.theme.contentWidthLaptop};
-    margin: auto;
-  }
-
-  & > h1 {
-    text-align: center;
-    color: ${props => props.theme.accentDark};
-  }
-`
-
-const HeaderContainer = styled.div`
-  grid-row: 1 / 2;
-  z-index: 2;
+const Content = styled.div`
+  padding: 20px;
+  max-width: 900px;
+  margin: 0 auto;
 `
 
 /* eslint no-undef: "off"*/

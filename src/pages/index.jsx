@@ -22,8 +22,8 @@ class Index extends React.Component {
         <Helmet title={config.siteTitle} />
         <SEO postEdges={postEdges} />
         <main>
+          <Navigation />
           <IndexHeadContainer>
-            <Navigation />
             <Hero>
               <img src={config.siteLogo} width='240px' />
               <h2>{config.siteTitle}</h2>
@@ -34,7 +34,6 @@ class Index extends React.Component {
             <p>我們是專業的軟體開發團隊+創業者, 希望能與大家分享我們一路走來的點滴</p>
             { addStyle(<CtaButton to={'/categories/tech/'}>技術文章</CtaButton>, { marginRight: 10, display: 'inline-block'}) }
             { addStyle(<CtaButton to={'/categories/biz/'}>創業討論</CtaButton>, { marginRight: 10, display: 'inline-block'}) }
-            { addStyle(<CtaButton to={'/lesson-one/'}>原創教學</CtaButton>, { marginRight: 10, display: 'inline-block'}) }
           </BodyContainer>
         </main>
       </div>
@@ -46,13 +45,11 @@ export default Index;
 
 const IndexHeadContainer = styled.div`
   background: ${props => props.theme.brand};
-  padding: ${props => props.theme.sitePadding};
+  padding: 0 25px 30px 25px;
   text-align: center;
 `
 
 const Hero = styled.div`
-  padding: 50px 0;
-
   & > h2 {
     color: white;
     font-weight: 200;

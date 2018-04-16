@@ -15,7 +15,7 @@ export default class CategoryTemplate extends React.Component {
         />
 
         <SiteHeader location={this.props.location}/>
-        <div style={{padding: '0 20px'}}>
+        <div style={{padding: '20px', margin: '0 auto', maxWidth: 900}}>
             <PostListing postEdges={postEdges} />
         </div>
       </div>
