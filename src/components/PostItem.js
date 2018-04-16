@@ -19,8 +19,8 @@ let Figure = styled.figure`
     background-image: url("${props => props.url}");
     background-repeat: no-repeat;
     background-position: center;
-    background-size: contain;
-    background-color: #aaa;
+    background-size: cover;
+    background-color: #ccc;
 
     @media screen and (max-width: ${breakpoint}px) {
         width: 100px;
