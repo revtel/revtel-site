@@ -71,7 +71,9 @@
     "lint:js": "eslint --ext .js,.jsx --ignore-pattern public,static .",
     "lint:md": "remark content/posts/",
     "write-good": "write-good $(glob 'content/posts/**/*.md')",
-    "format:js": "prettier '**/*.{js,jsx}' --write"
+    "format:js": "prettier '**/*.{js,jsx}' --write",
+    "publish": "npm run build && npm run deploy",
+    "deploy": "node scripts/deploy"
   },
   "remarkConfig": {
     "plugins": [
