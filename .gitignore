@@ -63,3 +63,5 @@ bundle-stats.json
 
 .ctags
 tags
+
+package-lock.json
